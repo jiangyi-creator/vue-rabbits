@@ -24,4 +24,11 @@ export default defineConfig([
   ...pluginVue.configs['flat/essential'],
 
   ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
+
+  // 覆盖规则放到最后，确保优先级最高
+  {
+    rules: {
+      'vue/multi-word-component-names': 0,
+    },
+  },
 ])
