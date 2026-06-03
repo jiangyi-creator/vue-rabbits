@@ -12,8 +12,8 @@ import HomePanel from './components/HomePanel.vue';
     <HomeBanner></HomeBanner>
     <HomeCategory></HomeCategory>
   </div>
-  <HomeHot></HomeHot>
   <HomeNew></HomeNew>
+  <HomeHot></HomeHot>
   <HomeProduct></HomeProduct>
   <HomePanel title="新鲜好物" subTitle="新鲜好物 人气推荐">
     <div>我是新鲜好物的插槽</div>
