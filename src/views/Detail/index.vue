@@ -1,10 +1,8 @@
 <script setup>
-import ImgView from '@/components/ImgView/index.vue'
-import DetailHot from './components/DetailHot.vue';
 import { getDetailsAPI } from '@/apis/detail';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import XtxSku from '@/components/XtxSku/index.vue'
+import DetailHot from './components/DetailHot.vue'
 const route = useRoute()
 const goods = ref({})
 const getGoods = async () => {
@@ -39,7 +37,7 @@ const skuChange = (sku) => {
           <div class="goods-info">
             <div class="media">
               <!-- 图片预览区 -->
-              <ImgView :image-list="goods.mainPictures"></ImgView>
+              <XtxImageView :image-list="goods.mainPictures"></XtxImageView>
               <!-- 统计数量 -->
               <ul class="goods-sales">
                 <li>
