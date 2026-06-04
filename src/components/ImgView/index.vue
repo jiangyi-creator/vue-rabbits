@@ -2,6 +2,13 @@
 import { ref, watch } from 'vue'
 import { useMouseInElement } from '@vueuse/core'
 
+defineProps({
+  imgList: {
+    type: Array,
+    defaults: () => {}
+  }
+})
+
 // 图片列表
 const imageList = [
   "https://yanxuan-item.nosdn.127.net/d917c92e663c5ed0bb577c7ded73e4ec.png",
