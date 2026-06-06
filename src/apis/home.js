@@ -17,7 +17,7 @@ export function getBannerAPI(params = {}) {
  * @param {*}
  * @return {*}
  */
-export const findNewAPI = () => {
+export function findNewAPI() {
   return httpInstance({
     url:'/home/new'
   })
@@ -28,7 +28,7 @@ export const findNewAPI = () => {
  * @param {*}
  * @return {*}
  */
-export const getHotAPI = () => {
+export function getHotAPI() {
   return  httpInstance({
     url: '/home/hot'
   })
@@ -39,7 +39,7 @@ export const getHotAPI = () => {
  * @param {*}
  * @return {*}
  */
-export const getGoodsAPI = () => {
+export function getGoodsAPI() {
   return httpInstance({
     url: '/home/goods'
   })

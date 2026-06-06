@@ -1,5 +1,11 @@
 <script setup>
 import { ref } from 'vue';
+import { loginAPI } from '@/apis/user';
+// 1.提示用户
+import { ElMessage } from 'element-plus'
+import 'element-plus/theme-chalk/el-message.css'
+// 2.跳转登录
+import { useRouter } from 'vue-router';
 
 
 // 表单验证(账户和密码)
@@ -22,7 +28,7 @@ const rules = ref({
   agree: [
     {
       validator: (rule, value, callback) => {
-        console.log(value)
+        // console.log(value)
         // 自定义校验规则 特殊用自定义
         if(value) {
           callback()
@@ -36,10 +42,20 @@ const rules = ref({
 
 // 4.统一校验 防止用户直接点登录
 const formRef = ref(null)
+const router = useRouter()
 const doLogin = () => {
-  formRef.value.validate((valid) => {
+  const { account, password } = form.value
+  formRef.value.validate(async (valid) => {
     // valid: 所有表单通过才为true
-    console.log(valid)
+    // console.log(valid)
+    if(valid) {
+      const res = await loginAPI({ account, password })
+      console.log(res)
+      // 1.提示用户
+      ElMessage({type: 'success', message: '登录成功'})
+      // 2.跳转登录
+      router.replace({path: '/'})
+    }
   })
 }
 

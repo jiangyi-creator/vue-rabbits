@@ -15,7 +15,7 @@ export function getCategoryAPI(id) {
  * @return {*}
  */
 
-export const getCategoryFilterAPI = (id) => {
+export function getCategoryFilterAPI(id) {
   return request({
     url:'/category/sub/filter',
     params:{
@@ -34,7 +34,7 @@ export const getCategoryFilterAPI = (id) => {
    }
  * @return {*}
  */
-export const getSubCategoryAPI = (data) => {
+export function getSubCategoryAPI(data) {
   return request({
     url:'/category/goods/temporary',
     method:'POST',
