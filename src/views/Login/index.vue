@@ -1,11 +1,14 @@
 <script setup>
 import { ref } from 'vue';
-import { loginAPI } from '@/apis/user';
 // 1.提示用户
 import { ElMessage } from 'element-plus'
 import 'element-plus/theme-chalk/el-message.css'
 // 2.跳转登录
 import { useRouter } from 'vue-router';
+
+// 导入pinia
+import { useUserStore } from '@/stores/user';
+const userStore = useUserStore()
 
 
 // 表单验证(账户和密码)
@@ -49,8 +52,7 @@ const doLogin = () => {
     // valid: 所有表单通过才为true
     // console.log(valid)
     if(valid) {
-      const res = await loginAPI({ account, password })
-      console.log(res)
+      await userStore.getUserInfo({account, password})
       // 1.提示用户
       ElMessage({type: 'success', message: '登录成功'})
       // 2.跳转登录
