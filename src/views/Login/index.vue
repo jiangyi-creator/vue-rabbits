@@ -3,6 +3,7 @@ import { ref } from 'vue';
 
 
 // 表单验证(账户和密码)
+// 只需进行简单的配置
 // 1.绑定表单对象
 const form = ref({
   account: '',
@@ -22,7 +23,7 @@ const rules = ref({
     {
       validator: (rule, value, callback) => {
         console.log(value)
-        // 自定义校验规则
+        // 自定义校验规则 特殊用自定义
         if(value) {
           callback()
         } else {
@@ -33,6 +34,14 @@ const rules = ref({
   ]
 })
 
+// 4.统一校验 防止用户直接点登录
+const formRef = ref(null)
+const doLogin = () => {
+  formRef.value.validate((valid) => {
+    // valid: 所有表单通过才为true
+    console.log(valid)
+  })
+}
 
 </script>
 
@@ -58,7 +67,7 @@ const rules = ref({
         </nav>
         <div class="account-box">
           <div class="form">
-            <el-form :model="form" :rules="rules" label-position="right" label-width="60px"
+            <el-form ref="formRef" :model="form" :rules="rules" label-position="right" label-width="60px"
               status-icon>
               <el-form-item prop="account" label="账户">
                 <el-input v-model="form.account"/>
@@ -71,7 +80,7 @@ const rules = ref({
                   我已同意隐私条款和服务条款
                 </el-checkbox>
               </el-form-item>
-              <el-button size="large" class="subBtn">点击登录</el-button>
+              <el-button size="large" @click="doLogin" class="subBtn">点击登录</el-button>
             </el-form>
           </div>
         </div>
