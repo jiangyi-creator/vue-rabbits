@@ -2,13 +2,6 @@
 // createWebHistory:创建history模式的路由
 
 import { createRouter, createWebHistory } from 'vue-router'
-// 引入模块
-import Layout from '@/views/Layout/index.vue'
-import Login from '@/views/Login/index.vue'
-import Category from '@/views/Category/index.vue'
-import Home from '@/views/Home/index.vue'
-import SubCategory from '@/views/SubCategory/index.vue'
-import Detail from '@/views/Detail/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,29 +9,29 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: Layout,
+      component: () => import('@/views/Layout/index.vue'),
       children: [
         {
           path: '',
-          component: Home
+          component: () => import('@/views/Home/index.vue')
         },
         {
           path: 'category/:id',
-          component: Category
+          component: () => import('@/views/Category/index.vue')
         },
         {
           path: 'category/sub/:id',
-          component: SubCategory
+          component: () => import('@/views/SubCategory/index.vue')
         },
         {
           path: 'detail/:id',
-          component: Detail
+          component: () => import('@/views/Detail/index.vue')
         }
       ]
     },
     {
       path: '/login',
-      component: Login
+      component: () => import('@/views/Login/index.vue')
     }
   ],
   scrollBehavior () {
