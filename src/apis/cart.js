@@ -19,3 +19,14 @@ export const findNewCartListAPI = () => {
     url: '/member/cart'
   })
 }
+
+// 接口购物车删除
+export const delCartAPI = (ids) => {
+  return request({
+    url: '/member/cart',
+    method: 'DELETE',
+    data: {
+      ids
+    }
+  })
+}
