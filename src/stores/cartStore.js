@@ -27,6 +27,13 @@ export const useCartStore = defineStore('cart', () => {
     cartList.value.splice(idx, 1)
   }
 
+  // 单选框功能实现
+  // 通过skuId找到要修改的那一项，把它的selected修改为传过来的selected
+  const singleCheck = (skuId, selected) => {
+    const item = cartList.value.find((item) => item.skuId === skuId)
+    item.selected = selected
+  }
+
   // 计算属性
   // 总数
   const allCount = computed(() => cartList.value.reduce((a, c)=> a + c.count, 0))
@@ -37,7 +44,8 @@ export const useCartStore = defineStore('cart', () => {
     allCount,
     allPrice,
     addCart,
-    delCart
+    delCart,
+    singleCheck
   }
 }, {
   persist: true
