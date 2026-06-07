@@ -20,7 +20,7 @@ export const findNewCartListAPI = () => {
   })
 }
 
-// 接口购物车删除
+// 删除购物车
 export const delCartAPI = (ids) => {
   return request({
     url: '/member/cart',
@@ -28,5 +28,14 @@ export const delCartAPI = (ids) => {
     data: {
       ids
     }
+  })
+}
+
+// 合并购物车
+export const mergeCartAPI = (data) => {
+  return request({
+    url: '/member/cart/merge',
+    method: 'POST',
+    data
   })
 }
