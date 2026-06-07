@@ -46,7 +46,11 @@ export const useCartStore = defineStore('cart', () => {
       const idx = cartList.value.findIndex((item) => skuId === item.skuId)
       cartList.value.splice(idx, 1)
     }
+  }
 
+  // 退出登录清空购物车
+  const clearCart = () => {
+    cartList.value = []
   }
 
   // 单选框功能实现
@@ -82,6 +86,7 @@ export const useCartStore = defineStore('cart', () => {
     isAll,
     selectedCount,
     selectedPrice,
+    clearCart,
     addCart,
     delCart,
     singleCheck,
