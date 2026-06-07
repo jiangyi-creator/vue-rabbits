@@ -34,18 +34,28 @@ export const useCartStore = defineStore('cart', () => {
     item.selected = selected
   }
 
+  // 复选框功能 大框控制小框选中状态
+  const allCheck = (selected) => {
+    cartList.value.forEach(item => item.selected = selected)
+  }
+
   // 计算属性
   // 总数
   const allCount = computed(() => cartList.value.reduce((a, c)=> a + c.count, 0))
   // 总价
   const allPrice = computed(() =>cartList.value.reduce((a, c) => a + c.count * c.price, 0))
+
+  // 是否全选  小框控制大框 小框全选中大框才选中
+  const isAll = computed(() => cartList.value.every((item) => item.selected))
   return {
     cartList,
     allCount,
     allPrice,
+    isAll,
     addCart,
     delCart,
-    singleCheck
+    singleCheck,
+    allCheck
   }
 }, {
   persist: true
