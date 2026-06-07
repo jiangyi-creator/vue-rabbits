@@ -45,6 +45,12 @@ export const useCartStore = defineStore('cart', () => {
   // 总价
   const allPrice = computed(() =>cartList.value.reduce((a, c) => a + c.count * c.price, 0))
 
+  // 已选中商品数量
+  const selectedCount = computed(() => cartList.value.filter(item => item.selected).reduce((a, c)=> a + c.count, 0))
+
+  // 已选中商品价格
+  const selectedPrice = computed(() => cartList.value.filter(item => item.selected).reduce((a, c)=> a + c.count * c.price, 0))
+
   // 是否全选  小框控制大框 小框全选中大框才选中
   const isAll = computed(() => cartList.value.every((item) => item.selected))
   return {
@@ -52,10 +58,12 @@ export const useCartStore = defineStore('cart', () => {
     allCount,
     allPrice,
     isAll,
+    selectedCount,
+    selectedPrice,
     addCart,
     delCart,
     singleCheck,
-    allCheck
+    allCheck,
   }
 }, {
   persist: true
