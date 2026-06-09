@@ -11,7 +11,10 @@ import { onMounted } from 'vue';
 
 const categoryStore = useCategoryStore()
 
-onMounted(() => categoryStore.getCategory())
+onMounted(async () => {
+  const tasks = [categoryStore.getCategory()]
+  await Promise.all(tasks)
+})
 
 </script>
 

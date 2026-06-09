@@ -1,17 +1,13 @@
 <script setup>
-import { onMounted, ref } from 'vue';
 import HomePanel from './HomePanel.vue'
-import { getGoodsAPI } from '@/apis/home.js';
-// 引入封装好的GoodsItem组件
 import GoodsItem from './GoodsItem.vue';
-const goodsProduct = ref([])
-const getGoods = async () => {
-  const res = await getGoodsAPI()
-  goodsProduct.value = res.result
-}
 
-onMounted(() => getGoods())
-
+defineProps({
+  goodsProduct: {
+    type: Array,
+    default: () => []
+  }
+})
 </script>
 
 <template>

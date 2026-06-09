@@ -1,16 +1,12 @@
 <script setup>
-import { onMounted, ref } from 'vue';
 import HomePanel from './HomePanel.vue';
-import { findNewAPI } from '@/apis/home.js';
 
-const newList = ref([])
-const findNew = async () => {
-  const res = await findNewAPI()
-  newList.value = res.result
-}
-
-onMounted(() => findNew())
-
+defineProps({
+  newList: {
+    type: Array,
+    default: () => []
+  }
+})
 </script>
 
 <template>

@@ -1,13 +1,12 @@
 <script setup>
 import HomePanel from './HomePanel.vue'
-import { getHotAPI } from '@/apis/home'
-import { ref } from 'vue'
-const hotList = ref([])
-const getHotList = async () => {
-  const res = await getHotAPI()
-  hotList.value = res.result
-}
-getHotList()
+
+defineProps({
+  hotList: {
+    type: Array,
+    default: () => []
+  }
+})
 
 </script>
 
