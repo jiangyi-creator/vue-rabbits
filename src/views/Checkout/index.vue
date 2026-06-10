@@ -34,29 +34,38 @@ const confirm = () => {
 }
 
 // 创建订单
-const creteOrder = async () => {
-  const res = await createOrderAPI({
-    deliveryTimeType: 1,
-    payType: 1,
-    payChannel: 1,
-    buyerMessage: '',
-    goods: checkInfo.value.goods.map(item => {
-      return {
-        skuId: item.skuId,
-        count: item.count
+const loading = ref(false)
+const createOrder = async () => {
+  if (loading.value) return
+  loading.value = true
+  try {
+    const res = await createOrderAPI({
+      deliveryTimeType: 1,
+      payType: 1,
+      payChannel: 1,
+      buyerMessage: '',
+      goods: checkInfo.value.goods.map(item => {
+        return {
+          skuId: item.skuId,
+          count: item.count
+        }
+      }),
+      addressId: curAddress.value.id
+    })
+    const orderId = res.result.id
+    router.push({
+      path: '/pay',
+      query: {
+        id: orderId
       }
-    }),
-    addressId: curAddress.value.id
-  })
-  const orderId = res.result.id
-  router.push({
-    path: '/pay',
-    query: {
-      id: orderId
-    }
-  })
-  // 更新购物车
-  cartStore.updateNewList()
+    })
+    // 更新购物车
+    cartStore.updateNewList()
+  } catch (error) {
+    console.error('创建订单失败', error)
+  } finally {
+    loading.value = false
+  }
 }
 
 </script>
@@ -153,7 +162,7 @@ const creteOrder = async () => {
         </div>
         <!-- 提交订单 -->
         <div class="submit">
-          <el-button type="primary" @click="creteOrder" size="large">提交订单</el-button>
+          <el-button type="primary" @click="createOrder" size="large" :loading="loading">提交订单</el-button>
         </div>
       </div>
     </div>
