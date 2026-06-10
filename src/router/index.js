@@ -77,21 +77,21 @@ const router = createRouter({
 })
 
 // 路由守卫：在跳转页面前检查登录状态
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from) => {
   const userStore = useUserStore()
 
   // 1. 访问需要登录的页面，但没登录 → 跳转登录页
   if (to.meta.requiresAuth && !userStore.userInfo.token) {
-    return next('/login')
+    return '/login'
   }
 
   // 2. 已登录用户访问登录页 → 跳转首页
   if (to.path === '/login' && userStore.userInfo.token) {
-    return next('/')
+    return '/'
   }
 
   // 3. 其他情况一律放行
-  next()
+  return true
 })
 
 export default router
