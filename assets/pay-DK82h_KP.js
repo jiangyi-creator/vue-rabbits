@@ -1,1 +1,0 @@
-import{a as e}from"./index-CBWnilOn.js";var t=t=>e({url:`/member/order/${t}`});export{t};
