@@ -168,7 +168,7 @@ const doLogin = () => {
 }
 
 .login-section {
-  background: url('@/assets/images/login-bg.png') no-repeat center / cover;
+  background: url('@/assets/images/login-bg.webp') no-repeat center / cover;
   height: 488px;
   position: relative;
 
