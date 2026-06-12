@@ -24,7 +24,15 @@ httpInstance.interceptors.request.use(config => {
 }, e => Promise.reject(e))
 
 // axios响应式拦截器
-httpInstance.interceptors.response.use(res => res.data, e => {
+httpInstance.interceptors.response.use(res => {
+  // 将API返回数据中的http图片地址转为https，解决混合内容拦截
+  const transformHttpToHttps = (data) => {
+    const httpImgDomain = 'http://yjy-xiaotuxian-dev.oss-cn-beijing.aliyuncs.com'
+    const httpsImgDomain = 'https://yjy-xiaotuxian-dev.oss-cn-beijing.aliyuncs.com'
+    return JSON.parse(JSON.stringify(data).replaceAll(httpImgDomain, httpsImgDomain))
+  }
+  return transformHttpToHttps(res.data)
+}, e => {
   // 统一错误提示
   ElMessage({type: 'warning', message: e.response.data.message})
   if(e.response.status === 401) {
