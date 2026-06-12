@@ -1,0 +1,1 @@
+import{on as e}from"./index-Q0b0e-yv.js";function t(){if(!arguments.length)return[];var t=arguments[0];return e(t)?t:[t]}export{t};

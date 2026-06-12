@@ -1,0 +1,1 @@
+import{a as e,vn as t,vr as n}from"./index-Q0b0e-yv.js";function r(){return e({url:`/home/category/head`})}var i=t(`category`,()=>{let e=n([]);return{categoryList:e,getCategory:async()=>{e.value=(await r()).result}}});export{i as t};

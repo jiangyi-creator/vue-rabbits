@@ -1,0 +1,1 @@
+import{a as e}from"./index-Q0b0e-yv.js";var t=t=>e({url:`/member/order/${t}`});export{t};

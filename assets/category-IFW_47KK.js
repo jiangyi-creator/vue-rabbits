@@ -1,0 +1,1 @@
+import{a as e}from"./index-Q0b0e-yv.js";function t(t){return e({url:`/category`,params:{id:t}})}function n(t){return e({url:`/category/sub/filter`,params:{id:t}})}function r(t){return e({url:`/category/goods/temporary`,method:`POST`,data:t})}export{n,r,t};
